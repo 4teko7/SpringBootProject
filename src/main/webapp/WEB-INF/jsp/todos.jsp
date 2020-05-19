@@ -25,10 +25,10 @@
 		
 		
 		<c:forEach items="${todos}" var="item">
-		<c:url var = "deleteLink" value="/deletetodo">
+		<c:url var = "deleteLink" value="/todos/deletetodo">
 			<c:param name="id" value="${item.id}" />
 		</c:url>
-		<c:url var = "updateLink" value="/updatetodo">
+		<c:url var = "updateLink" value="/todos/updatetodo">
 			<c:param name="id" value="${item.id}" />
 		</c:url>
 			    ${item}
@@ -43,7 +43,8 @@
 		
 		<div style="clear; both;"></div>
 			<p>
-				<a href="${pageContext.request.contextPath}/addtodo">Add Todo</a>
+				<a href="${pageContext.request.contextPath}/todos/addtodo">Add Todo</a>
+				<a href="${pageContext.request.contextPath}/users/users">Users</a>
 			</p>
 	</div>
 </body>

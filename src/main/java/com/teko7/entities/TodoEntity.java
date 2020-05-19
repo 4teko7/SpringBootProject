@@ -18,7 +18,10 @@ public class TodoEntity implements Serializable {
 
 	private static final long serialVersionUID = -3009157732242241606L;
 	
-
+	int id;
+	String title;
+	String content;
+	boolean completed;
 	
 	public TodoEntity() {
 		super();
@@ -30,15 +33,7 @@ public class TodoEntity implements Serializable {
 		this.completed = completed;
 	}
 
-
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	//	@Column(name = "title")
-	String title;
-	String content;
-	//	@Column(name = "completed")
-	boolean completed;
+	
 	
 	public TodoEntity(int id, String title, String content, boolean completed) {
 			super();

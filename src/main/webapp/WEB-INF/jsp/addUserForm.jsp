@@ -14,30 +14,46 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
  -->
 	
-	<title>Add Todo</title>	  
+	<title>Add User</title>	  
 </head>
 <body>
 	<div id = "container" style = "margin:auto;">
 		<div id="wrapper">
 			<div id="header">
-				<h2>Add Todo Form</h2>
+				<h2>Add User Form</h2>
 			</div>
 		</div>
 	
 		
 		<div id="container" style = " align-items: center;">
-			<h3>Save Todo</h3>
+			<h3>Save User</h3>
 		
-			<form:form action="addtodo" modelAttribute="todo" method="POST">
+			<form:form action="adduser" modelAttribute="user" method="POST">
 	  			<form:hidden path="id" />
 		        <table >    
 			         <tr>    
-			          <td>Title : </td>   
-			          <td><form:input path="title"  /></td>  
+			          <td>Firstname : </td>   
+			          <td><form:input path="firstname"  /></td>  
 			         </tr>    
 			         <tr>    
-			          <td>Content :</td>    
-			          <td><form:input path="content" /></td>  
+			          <td>Lastname :</td>    
+			          <td><form:input path="lastname" /></td>  
+			         </tr>  
+			         <tr>    
+			          <td>Username :</td>    
+			          <td><form:input path="username" required="required"/></td>  
+			         </tr>  
+			         <tr>    
+			          <td>Age :</td>    
+			          <td><form:input path="age" /></td>  
+			         </tr>  
+			         <tr>    
+			          <td>School :</td>    
+			          <td><form:input path="school" /></td>  
+			         </tr>  
+			         <tr>    
+			          <td>Department :</td>    
+			          <td><form:input path="department" /></td>  
 			         </tr>   
 			         
 			         <tr>    
@@ -48,7 +64,7 @@
 	       
 			<div style="clear; both;"></div>
 			<p>
-				<a href="${pageContext.request.contextPath}/todos/todos">Go Todos</a>
+				<a href="${pageContext.request.contextPath}/users/users/">Go Users</a>
 			</p>
 		</div>
 

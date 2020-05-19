@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.teko7.entities.TodoEntity;
+import com.teko7.entities.UserEntity;
 
 
 @RequestMapping("/database")
@@ -78,18 +79,35 @@ public class Database {
     	 try {
 	    	 if(object instanceof TodoEntity) {
 	    		 saveTodo((TodoEntity)object);
+	    	 }else if(object instanceof UserEntity) {
+	    		 saveUser((UserEntity)object);
 	    	 }
     	 }catch(Exception e) {
     		 
     	 } 
      }
      
+     public Object getAll(String type) {
+    	 try {
+	    	 if(type == "todo") {
+	    		return getAllTodos();
+	    	 }else if(type == "user") {
+	    		 return getAllUsers();
+	    	 }
+	    	 
+    	 }catch(Exception e) {
+    		 
+    	 } 
+    	 return null;
+    	 
+     }
+     
+     
      
      public Object getById(String type,int theId) {
     	 try {
-	    	 if(type == "todo") {
-	    		return getTodoById(theId);
-	    	 }
+	    	 if(type == "todo") {return getTodoById(theId);}
+	    	 else if(type == "user") {return getUserById(theId);}
     	 }catch(Exception e) {
     		 
     	 } 
@@ -98,9 +116,8 @@ public class Database {
      
      public void delete(String type , int id) {
     	 try {
-	    	 if(type == "todo") {
-	    		 removeTodo(id);
-	    	 }
+	    	 if(type == "todo") {removeTodo(id);}
+	    	 else if(type == "user") {removeUser(id);}
     	 }catch(Exception e) {
     		 
     	 } 
@@ -130,11 +147,43 @@ public class Database {
     	 return null;
      }
      
+     public UserEntity getUserById(int theId) throws SQLException {
+    	 try {
+    		 myConn = getConnection();
+    		 myStmt = myConn.prepareStatement("select * from users where id = ?");
+    		 myStmt.setInt(1, theId);
+    		 
+    		 ResultSet rs = myStmt.executeQuery();
+
+    		 if(rs.next())
+    			 return new UserEntity(rs.getInt("id"),rs.getString("firstname"),rs.getString("lastname"),rs.getString("username"),rs.getString("age"),rs.getString("school"),rs.getString("department"));
+    		 else
+    			 return null;
+    		 
+    	 }catch(Exception e) {
+    		 System.out.println(e.getStackTrace());
+    		 System.out.println("execute Query HAtasi !");
+    		 System.exit(1);
+    	 }finally{
+    		 myConn.close();
+    	 }
+    	 return null;
+     }
+     
      public void saveTodo(TodoEntity todo) throws SQLException {
     	 try {
     		 System.out.println("INSIDE DATABASE : " + todo);
     		 myConn = getConnection();
-    		 myStmt = myConn.prepareStatement("Insert into todo (title, content, completed) values (?,?,?)");
+    		 
+    		 if(todo.getId() > 0) {
+    			 myStmt = myConn.prepareStatement("update todo set title=?, content=? , completed=? where id=?");
+    			 myStmt.setInt(4, todo.getId());
+    		 }
+    		 else{
+        		 myStmt = myConn.prepareStatement("Insert into todo (title, content, completed) values (?,?,?)");    		 
+    		 }
+    		 
+    		 
     		 myStmt.setString(1, todo.getTitle());
     		 myStmt.setString(2, todo.getContent());
     		 myStmt.setBoolean(3, false);
@@ -142,6 +191,34 @@ public class Database {
     		 
     	 }catch(Exception e) {
     		 System.out.println(e.getStackTrace());
+    	 }finally{
+    		 myConn.close();
+    	 }
+     }
+     
+     public void saveUser(UserEntity user) throws SQLException {
+    	 try {
+    		 myConn = getConnection();
+    		 if(user.getId() > 0) {
+    			 myStmt = myConn.prepareStatement("update users set firstname=?, lastname=? , username=? , age=? , school=? , department=? where id=?");
+    			 myStmt.setInt(7, user.getId());
+    		 }
+    		 else{
+    			 myStmt = myConn.prepareStatement("Insert into users (firstname, lastname, username, age,school,department) values (?,?,?,?,?,?)");
+    		 
+    		 }
+    		
+    		 myStmt.setString(1, user.getFirstname());
+    		 myStmt.setString(2, user.getLastname());
+    		 myStmt.setString(3, user.getUsername());
+    		 myStmt.setString(4, user.getAge());
+    		 myStmt.setString(5, user.getSchool());
+    		 myStmt.setString(6, user.getDepartment());
+    		 
+    		 myStmt.executeUpdate();
+    		 
+    	 }catch(Exception e) {
+    		 e.getStackTrace();
     	 }finally{
     		 myConn.close();
     	 }
@@ -162,6 +239,19 @@ public class Database {
     	 }
      }
      
+     public void removeUser(int id) throws SQLException {
+    	 try {
+    		 myConn = getConnection();
+    		 myStmt = myConn.prepareStatement("delete from users where id = ?");
+    		 myStmt.setInt(1, id);
+    		 myStmt.executeUpdate();
+    		 
+    	 }catch(Exception e) {
+    		 System.out.println(e.getStackTrace());
+    	 }finally{
+    		 myConn.close();
+    	 }
+     }
      
      
      public List<TodoEntity> getAllTodos() { 
@@ -183,6 +273,28 @@ public class Database {
 			 e.getStackTrace();
 		 }
 		 return todos;
+	 }
+     
+     
+     public List<UserEntity> getAllUsers() { 
+    	 List<UserEntity> users = new ArrayList<UserEntity>();	
+    	 UserEntity entity = null;
+    	 try {
+			 myConn = getConnection();
+			 String query = "select * from users";
+			 myStmt = myConn.prepareStatement(query);
+			 ResultSet rs = myStmt.executeQuery(query);
+			 while(rs.next()) {
+				 entity = new UserEntity(rs.getInt("id"),rs.getString("firstname"),rs.getString("lastname"),rs.getString("username"),rs.getString("age"),rs.getString("school"),rs.getString("department"));
+				System.out.println(entity);
+				 users.add(entity);
+			 }
+			 myConn.close();
+			 
+		 }catch(Exception e) {
+			 e.getStackTrace();
+		 }
+		 return users;
 	 }
      
      

@@ -18,12 +18,13 @@ import com.teko7.entities.TodoEntity;
 //import com.teko7.service.TodoService;
 //import com.teko7.service.TodoServiceImp;
 //import com.teko7.todo.repository.TodoRepository;
+import com.teko7.entities.UserEntity;
 
 
 //@RestController
 @Controller
 //@Component
-@RequestMapping("/")
+@RequestMapping("/todos")
 public class TodoController {
 
 	
@@ -75,11 +76,11 @@ public class TodoController {
 //        return result + "</html>";
 //    }
 	
-	@GetMapping("todos")
+	@GetMapping("/todos")
 	public String getTodos(Model theModel) {
-		List<TodoEntity> todos = getDatabase().getAllTodos();
+		List<TodoEntity> todos = (List<TodoEntity>)getDatabase().getAll("todo");
 		theModel.addAttribute("todos",todos);
-		return "indexjsp";
+		return "todos";
 	}
 	
 	@RequestMapping(value="addtodo", method = RequestMethod.GET)
@@ -94,13 +95,13 @@ public class TodoController {
 	@RequestMapping(value="addtodo", method = RequestMethod.POST)
 	public String addTodo(@ModelAttribute("TodoEntity") TodoEntity todo) {
 		getDatabase().save(todo);
-		return "redirect:/todos";
+		return "redirect:/todos/todos/";
 	}
 	
 	@RequestMapping(value="deletetodo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam("id") int theId) {
 		getDatabase().delete("todo",theId);
-		return "redirect:/todos";
+		return "redirect:/todos/todos";
 	}
 	
 	@RequestMapping(value="updatetodo", method = RequestMethod.GET)
