@@ -29,6 +29,10 @@ public class TodoController {
 
 	
 	private Database getDatabase() {return new Database();}
+	
+	
+	
+	
 //	@Autowired
 //	private TodoService todoService;
 	
@@ -91,7 +95,6 @@ public class TodoController {
 		return "addTodoForm";
 	}
 	
-//	@PostMapping("addtodo")
 	@RequestMapping(value="addtodo", method = RequestMethod.POST)
 	public String addTodo(@ModelAttribute("TodoEntity") TodoEntity todo) {
 		getDatabase().save(todo);

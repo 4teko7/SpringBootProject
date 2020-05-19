@@ -10,9 +10,9 @@
 //@Repository
 //public interface TodoRepository extends CrudRepository<TodoEntity, Integer>{
 //
-////	TodoEntity findById(int id);
-////    List<TodoEntity> findByCompleted(boolean completed);
-////    List<TodoEntity> findAll();
+//	TodoEntity findById(int id);
+//    List<TodoEntity> findByCompleted(boolean completed);
+//    List<TodoEntity> findAll();
 //}
 //
 //
