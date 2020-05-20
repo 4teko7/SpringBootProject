@@ -1,4 +1,4 @@
-package com.teko7.services;
+package com.teko7.databases;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,17 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.teko7.database.Database;
+
+import com.teko7.service.Service;
 import com.teko7.entities.UserEntity;
 
-public class UserService {
+public class UserDatabase {
 
 	Connection myConn = null;
 	PreparedStatement myStmt = null;
     ResultSet myRs = null;
 	
-	private Database getDatabase() {return new Database();}
-	private Connection getConnection() throws Exception {return getDatabase().getConnection();}
+	private Service getService() {return new Service();}
+	private Connection getConnection() throws Exception {return getService().getConnection();}
 	
 	public UserEntity getUserById(int theId) throws SQLException {
    	 try {

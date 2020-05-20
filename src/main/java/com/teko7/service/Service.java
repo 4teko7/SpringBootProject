@@ -1,4 +1,4 @@
-package com.teko7.database;
+package com.teko7.service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,27 +13,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.teko7.config.Config;
+import com.teko7.databases.UserDatabase;
 import com.teko7.entities.TodoEntity;
 import com.teko7.entities.UserEntity;
-import com.teko7.services.TodoService;
-import com.teko7.services.UserService;
+import com.teko7.databases.TodoDatabase;
 
-public class Database {
+public class Service {
 	
-	private TodoService getTodoService() {return new TodoService();}
-	private UserService getUserService() {return new UserService();}
+	private TodoDatabase getTodoDatabase() {return new TodoDatabase();}
+	private UserDatabase getUserDatabase() {return new UserDatabase();}
+	public Config getConfig() {return new Config();}
 	
 	Connection myConn = null;
 	PreparedStatement myStmt = null;
     ResultSet myRs = null;
 
-    String dbUrl = "jdbc:mysql://localhost:3306/demospringapp?useSSL=false";  
-    String user = "admin";
-    String password = "password";
-	
-
-
-     public Connection getConnection() throws Exception { return DriverManager.getConnection(dbUrl, user, password);}
+    Config config = getConfig();
+    
+    
+    
+     public Connection getConnection() throws Exception { return DriverManager.getConnection(config.getDbUrl(), config.getUser(), config.getPassword());}
      
 //     @GetMapping("/start")
      public String startDatabase() {
@@ -69,8 +69,8 @@ public class Database {
      
      public void save(Object object) {
     	 try {
-	    	 if(object instanceof TodoEntity) {getTodoService().saveTodo((TodoEntity)object);}
-	    	 else if(object instanceof UserEntity) {getUserService().saveUser((UserEntity)object);}
+	    	 if(object instanceof TodoEntity) {getTodoDatabase().saveTodo((TodoEntity)object);}
+	    	 else if(object instanceof UserEntity) {getUserDatabase().saveUser((UserEntity)object);}
     	 }catch(Exception e) {
     		 
     	 } 
@@ -78,8 +78,8 @@ public class Database {
      
      public Object getAll(String type) {
     	 try {
-	    	 if(type == "todo") {return getTodoService().getAllTodos();}
-	    	 else if(type == "user") {return getUserService().getAllUsers();}
+	    	 if(type == "todo") {return getTodoDatabase().getAllTodos();}
+	    	 else if(type == "user") {return getUserDatabase().getAllUsers();}
 	    	 
     	 }catch(Exception e) {
     		 
@@ -90,8 +90,8 @@ public class Database {
      
      public Object getById(String type,int theId) {
     	 try {
-	    	 if(type == "todo") {return getTodoService().getTodoById(theId);}
-	    	 else if(type == "user") {return getUserService().getUserById(theId);}
+	    	 if(type == "todo") {return getTodoDatabase().getTodoById(theId);}
+	    	 else if(type == "user") {return getUserDatabase().getUserById(theId);}
     	 }catch(Exception e) {
     		 
     	 } 
@@ -100,8 +100,8 @@ public class Database {
      
      public void delete(String type , int id) {
     	 try {
-	    	 if(type == "todo") {getTodoService().removeTodo(id);}
-	    	 else if(type == "user") {getUserService().removeUser(id);}
+	    	 if(type == "todo") {getTodoDatabase().removeTodo(id);}
+	    	 else if(type == "user") {getUserDatabase().removeUser(id);}
     	 }catch(Exception e) {
     		 
     	 } 
