@@ -108,6 +108,15 @@ public class Service {
      }
      
      
+     public Object getByUsername(String type,String username) {
+    	 try {
+	    	 if(type == "user") {return getUserDatabase().getUserByUsername(username);}
+    	 }catch(Exception e) {
+    		 
+    	 } 
+    	 return null;
+     }
+     
      
      
  }

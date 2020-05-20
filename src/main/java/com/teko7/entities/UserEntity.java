@@ -9,7 +9,13 @@ public class UserEntity {
 	String age;
 	String school;
 	String department;
+	String password;
+	String passwordConfirm;
 	
+	
+
+	
+
 	public UserEntity() {
 		super();
 	}
@@ -28,12 +34,13 @@ public class UserEntity {
 		this.username = username;
 	}
 	
-	public UserEntity(String firstname, String lastname, String username, String age, String school,
+	public UserEntity(String firstname, String lastname, String username, String password, String age, String school,
 			String department) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
+		this.password = password;
 		this.age = age;
 		this.school = school;
 		this.department = department;
@@ -46,17 +53,35 @@ public class UserEntity {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
-	public UserEntity(int id, String firstname, String lastname, String username, String age, String school,
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public UserEntity(int id, String firstname, String lastname, String username, String password, String age, String school,
 			String department) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
+		this.password = password;
 		this.age = age;
 		this.school = school;
 		this.department = department;
+	}
+	
+	
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 	public String getFirstname() {
 		return firstname;
@@ -97,7 +122,7 @@ public class UserEntity {
 	
 	@Override
 	public String toString() {
-		return "UserEntity [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username
+		return "UserEntity [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", password=" + password
 				+ ", age=" + age + ", school=" + school + ", department=" + department + "]";
 	}
 }

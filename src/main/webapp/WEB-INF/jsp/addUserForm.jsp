@@ -39,6 +39,12 @@
 			          <td>Lastname :</td>    
 			          <td><form:input path="lastname" /></td>  
 			         </tr>  
+			         
+			         <tr>    
+			          <td>Password :</td>    
+			          <td><form:input path="password" /></td>  
+			         </tr> 
+			         
 			         <tr>    
 			          <td>Username :</td>    
 			          <td><form:input path="username" required="required"/></td>  
