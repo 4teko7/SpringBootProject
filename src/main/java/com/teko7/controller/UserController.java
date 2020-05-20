@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teko7.entities.TodoEntity;
 import com.teko7.entities.UserEntity;
-import com.teko7.service.Service;
+import com.teko7.service.DatabaseService;
 import com.teko7.validator.UserValidator;
 
 @RequestMapping("/users")
@@ -22,10 +22,10 @@ import com.teko7.validator.UserValidator;
 public class UserController {
 
 	
-	private Service getService() {return new Service();}
+	private DatabaseService getService() {return new DatabaseService();}
 	private UserValidator getUserValidator() {return new UserValidator();}
 	
-	private Service service = getService();
+	private DatabaseService service = getService();
 	private UserValidator userValidator = getUserValidator();
 	
 	
@@ -55,12 +55,17 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public String loginUser(Model theModel) {
-		theModel.addAttribute("user",new UserEntity());
+	public String loginUser(Model theModel, String error, String logout) {
+		if (error != null)
+            theModel.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            theModel.addAttribute("message", "You have been logged out successfully.");
+//		theModel.addAttribute("user",new UserEntity());
 		return "login";
 	}
 	
-	@PostMapping("login")
+	@PostMapping("/login")
 	public String loginUser(@ModelAttribute("user") UserEntity user) {
 		service.save(user);
 		System.out.println("USER : " + user);

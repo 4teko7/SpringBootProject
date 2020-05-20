@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.teko7.service.Service;
+import com.teko7.service.DatabaseService;
 import com.teko7.entities.UserEntity;
 
 public class UserDatabase {
@@ -17,7 +17,7 @@ public class UserDatabase {
 	PreparedStatement myStmt = null;
     ResultSet myRs = null;
 	
-	private Service getService() {return new Service();}
+	private DatabaseService getService() {return new DatabaseService();}
 	private Connection getConnection() throws Exception {return getService().getConnection();}
 	
 	public UserEntity getUserById(int theId) throws SQLException {

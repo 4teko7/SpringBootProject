@@ -21,6 +21,8 @@
 <!--  For Html Pages-->
 	<dependencies>
 		
+		
+			<!-- SPRINGBOOT STARTER DEPENDENCIES -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
@@ -37,66 +39,51 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<!-- END OF SPRINGBOOT STARTER DEPENDENCIES -->
+			
+			<!-- FOR AUTO REFRESH -->
 			<dependency>
 		    	<groupId>org.springframework.boot</groupId>
 		    	<artifactId>spring-boot-devtools</artifactId>
 		    	<optional>true</optional>
 			</dependency>
+			<!-- END OF AUTO REFRESH -->
 			
+			<!--  FOR ADDING AUTO GETTER SETTER -->
 			<dependency>
 			    <groupId>org.projectlombok</groupId>
 			    <artifactId>lombok</artifactId>
 			    <version>1.18.12</version>
 			    <scope>provided</scope>
 			</dependency>
+			<!--  END OF ADDING AUTO GETTER SETTER -->
+
+
+			<!-- For Database Connections -->
+			<dependency>
+			   <groupId>org.springframework.boot</groupId>
+			   <artifactId>spring-boot-starter-jdbc</artifactId>
+			</dependency>
+			<dependency>
+			   <groupId>com.h2database</groupId>
+			   <artifactId>h2</artifactId>
+			</dependency>
+			<dependency>
+			   <groupId>mysql</groupId>
+			   <artifactId>mysql-connector-java</artifactId>
+			</dependency>
+			
+			<!-- END OF DATABASE CONNECTIONS -->
 			
 			
-			<!-- FOR JPA DATABSE -->
+			<!-- FOR AUTHENTICATION -->
 			
-			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-starter-jdbc</artifactId>
-</dependency>
-<dependency>
-   <groupId>com.h2database</groupId>
-   <artifactId>h2</artifactId>
-</dependency>
-<dependency>
-   <groupId>mysql</groupId>
-   <artifactId>mysql-connector-java</artifactId>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-
-
-<!-- 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-</dependency> -->
-
-
-
-
-
-
-    <!--     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency> -->
-
-
-			<!-- END OF FOR JPA DATABSE -->
-
+			<dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-security</artifactId>
+        	</dependency>
+        	<!-- END OF AUTHENTICATION -->
+        
 
 
 	<!-- Need this to compile JSP -->
@@ -117,14 +104,7 @@
 		</dependency>
 		<!-- END OF Need this to compile JSP -->
 
-		<!--FOR HTML PAGES  -->
-<!-- 		<dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency> -->
-		<!-- END OF FOR HTML PAGES  -->
-		
-		
+
 		
 	</dependencies>
 

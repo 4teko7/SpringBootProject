@@ -44,13 +44,16 @@
 		
 		</div>
 		
-		<div style="clear; both;"></div>
-			<p>
+		
+			
+	</div>
+	<br>
+				<div style="clear; both;"></div> 
+	
 				<a href="${pageContext.request.contextPath}/users/adduser">Add User</a>
 				<a href="${pageContext.request.contextPath}/users/registration">Registration</a>
 				<a href="${pageContext.request.contextPath}/users/login">Login</a>
 				<a href="${pageContext.request.contextPath}/todos/todos">Todos</a>
-			</p>
-	</div>
+		
 </body>
 </html>

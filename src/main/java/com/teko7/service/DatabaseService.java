@@ -19,7 +19,7 @@ import com.teko7.entities.TodoEntity;
 import com.teko7.entities.UserEntity;
 import com.teko7.databases.TodoDatabase;
 
-public class Service {
+public class DatabaseService {
 	
 	private TodoDatabase getTodoDatabase() {return new TodoDatabase();}
 	private UserDatabase getUserDatabase() {return new UserDatabase();}

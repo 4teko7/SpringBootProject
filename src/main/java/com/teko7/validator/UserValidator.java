@@ -4,7 +4,7 @@ package com.teko7.validator;
 
 import com.teko7.config.Config;
 import com.teko7.entities.UserEntity;
-import com.teko7.service.Service;
+import com.teko7.service.DatabaseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,11 +15,11 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator  {
 
-	private Service getService() {return new Service();}
+	private DatabaseService getService() {return new DatabaseService();}
 	private Config getConfig() {return new Config();}
 	
 	private Config config = getConfig();
-    private Service service = getService();
+    private DatabaseService service = getService();
 
     @Override
     public boolean supports(Class<?> aClass) {

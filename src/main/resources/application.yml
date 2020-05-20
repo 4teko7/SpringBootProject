@@ -8,6 +8,11 @@ String password: "password"
 
 spring.messages.basename: validation
 
+spring:
+  security:
+    user:
+      name: teko
+      password: tekosin
 
 #spring.datasource.driverClassName: com.mysql.jdbc.Driver
 #spring.datasource.url: jdbc:mysql://localhost:3306/demospringapp?useSSL=false

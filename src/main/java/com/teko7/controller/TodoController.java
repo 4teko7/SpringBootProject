@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teko7.entities.TodoEntity;
 import com.teko7.entities.UserEntity;
-import com.teko7.service.Service;
+import com.teko7.service.DatabaseService;
 
 
 //@RestController
@@ -25,9 +25,9 @@ import com.teko7.service.Service;
 public class TodoController {
 
 	
-	private Service getService() {return new Service();}
+	private DatabaseService getService() {return new DatabaseService();}
 	
-	private Service service = getService();
+	private DatabaseService service = getService();
 	
 
 	@GetMapping("/todos")

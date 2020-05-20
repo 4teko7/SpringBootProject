@@ -10,16 +10,18 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-@ComponentScan(basePackages = {"com.teko7"})
-//@ComponentScan(basePackages = {"com.teko7"})
-@SpringBootApplication
-@EnableAutoConfiguration
 //@EnableJpaRepositories(basePackages="com.teko7.todo.repository")
 //@EnableTransactionManagement
+//@ComponentScan(basePackages = {"com.teko7"})
+
+@ComponentScan(basePackages = {"com.teko7"})
+@SpringBootApplication
+@EnableAutoConfiguration
 @EntityScan("com.teko7.entities")
+@EnableWebSecurity
 public class UserLoginProjectApplication  {
 
 //	extends SpringBootServletInitializer
